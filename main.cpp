@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     DatabaseConnection dbconnector(db);
 
     SqlQueryModel  habitsSqlModel(0);
-    habitsSqlModel.setQuery("SELECT current.position, task.name FROM current JOIN task ON current.task_id = task.id",db);
+    habitsSqlModel.setQuery("SELECT current.position, task.name, task.id FROM current JOIN task ON current.task_id = task.id ORDER BY current.position ASC",db);
 
 
 

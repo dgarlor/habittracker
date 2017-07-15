@@ -21,6 +21,7 @@ ApplicationWindow {
                 delegate: TaskButton{
                     id: delegate
                     habit: position
+                    task_id : id
                     text:name
                     }
 

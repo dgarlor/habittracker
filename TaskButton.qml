@@ -3,6 +3,7 @@ import QtQuick.Controls 2.0
 
 Item {
     property int habit: 1
+    property int task_id: -1
     property alias text: button.text
     width: parent.width
     height: 100
@@ -15,7 +16,7 @@ Item {
         anchors.bottom: parent.bottom
         anchors.right: modify.left
         anchors.left: parent.left
-        onClicked: dbconnector.insertEvent(parent.habit)
+        onClicked: dbconnector.insertEvent(parent.task_id)
     }
 
     Button {
@@ -24,7 +25,7 @@ Item {
         anchors.top: parent.top
         anchors.bottom: stats.top
         anchors.right: parent.right
-        onClicked: print(parent.text+": Modify "+parent.habit)
+        onClicked: print(parent.text+": Modify task: "+ parent.habit+ ", id" +parent.task_id)
     }
 
     Button {
@@ -33,7 +34,7 @@ Item {
         anchors.top: modify.bottom
         anchors.bottom: parent.bottom
         anchors.right: parent.right
-        onClicked: print(parent.text+": Stats "+parent.habit)
+        onClicked: print(parent.text+": Stats: "+ parent.habit+ ", id" +parent.task_id)
     }
 
 }

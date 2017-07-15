@@ -1,7 +1,7 @@
 #include "SqlQueryModel.h"
 #include <QSqlRecord>
 #include <QSqlField>
-#include <iostream>
+
 SqlQueryModel::SqlQueryModel(QObject *parent) :
     QSqlQueryModel(parent)
 {
@@ -23,7 +23,6 @@ void SqlQueryModel::generateRoleNames()
 {
     m_roleNames.clear();
     for( int i = 0; i < record().count(); i ++) {
-        std::cout<<" "<<record().fieldName(i).toUtf8().toStdString()<<std::endl;
         m_roleNames.insert(Qt::UserRole + i + 1, record().fieldName(i).toUtf8());
     }
 }
