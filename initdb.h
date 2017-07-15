@@ -21,7 +21,7 @@ QSqlError initDDb(QSqlDatabase &db)
     QSqlQuery q;
     if (!q.exec(QLatin1String("create table task(id integer primary key, name varchar)")))
         return q.lastError();
-    if (!q.exec(QLatin1String("create table action(id integer primary key, stamp timestamp, task_id integer)")))
+    if (!q.exec(QLatin1String("create table action(id INTEGER PRIMARY KEY, timestamp  DEFAULT CURRENT_TIMESTAMP NOT NULL, task_id INTEGER)")))
         return q.lastError();
     if (!q.exec(QLatin1String("create table current(id integer primary key, position integer, task_id integer)")))
         return q.lastError();

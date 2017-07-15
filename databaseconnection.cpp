@@ -1,17 +1,38 @@
 #include "databaseconnection.h"
-
-#include<iostream>
-
+#include <QtDebug>
+#include <QtSql>
+#include <iostream>
 using namespace std;
 
-DatabaseConnection::DatabaseConnection(QObject *parent) : QObject(parent)
+DatabaseConnection::DatabaseConnection(QSqlDatabase &db) :
+    QObject(0), database(db)
 {
-    mTaskName1=QString("Arreglar la barba");
-    mTaskName2=QString("Leer algo tecnico");
-    mTaskName3=QString("Hacer algo de la casa");
 }
 
+//DatabaseConnection::DatabaseConnection(QObject *parent) : QObject(parent)
+//{
+//}
+
 void DatabaseConnection::insertEvent(const int &habit){
-   cout<<" -- Slot insertEvent: "<<habit<<endl;
-    emit insertNotified(habit);
+   if( !database.open())
+   {
+       qInfo()<<"ERROR: Database is not open"<<endl;
+       return;
+   }
+
+   QSqlQuery q;
+   if (!q.prepare(QLatin1String("insert into action(task_id) values(?)"))){
+       qInfo()<<"ERROR: preparation command: "<< q.lastError();
+       return;
+   }
+
+   q.addBindValue(habit);
+   if(!q.exec()){
+       qInfo()<<"ERROR: Problem executing insert"<<endl;
+       qInfo()<<q.lastError()<<endl;
+       return;
+   }
+
+   qInfo()<<" Inserted "<<q.lastInsertId();
+   emit insertNotified(habit);
 }

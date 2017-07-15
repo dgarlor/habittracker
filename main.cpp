@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
     std::cout<<initDDb(db).text().toStdString();
 
 
-    DatabaseConnection dbconnector;
+    DatabaseConnection dbconnector(db);
 
     SqlQueryModel  habitsSqlModel(0);
     habitsSqlModel.setQuery("SELECT current.position, task.name FROM current JOIN task ON current.task_id = task.id",db);
