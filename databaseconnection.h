@@ -14,15 +14,23 @@ class DatabaseConnection : public QObject
 
 
 public:
-    //explicit DatabaseConnection(QObject *parent = 0);
     DatabaseConnection(QSqlDatabase &db);
 
 signals:
-    void insertNotified(int habit);
+
+    void insertedAction(int task_id);
+
+    void insertedTask(int task_id);
+
+    void updatedPosition(int position);
 
 public slots:
 
-    void insertEvent(const int &habit);
+    void insertAction(const int task_id);
+
+    void insertTask(const QString &name, const int position=-1);
+
+    void updatePosition(const int task_id, const int position);
 
 protected:
     QSqlDatabase database;
