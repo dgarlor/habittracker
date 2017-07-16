@@ -1,11 +1,11 @@
 import QtQuick 2.7
-import QtQuick.Controls 2.0
+import QtQuick.Controls 2.1
 
 Item {
     property int habit: 1
     property int task_id: -1
     property alias text: button.text
-    property var editForm
+    property var parentPage
 
     width: parent.width
     height: 100
@@ -18,7 +18,7 @@ Item {
         anchors.bottom: parent.bottom
         anchors.right: modify.left
         anchors.left: parent.left
-        onClicked: dbconnector.insertEvent(parent.task_id)
+        onClicked: dbconnector.insertAction(parent.task_id)
     }
 
     Button {
@@ -29,9 +29,10 @@ Item {
         anchors.right: parent.right
         onClicked: {
             print(parent.text+": Modify task: "+ parent.habit+ ", id" +parent.task_id)
-//            editForm.position = parent.habit
-//            editForm.state ="focused"
-            root.StackView.view.push("qrc:Page1.qml",{position:parent.habit})
+            parentPage.StackView.view.push(
+                        "qrc:/Page1.qml",
+                        { position:parent.habit }
+                        )
         }
     }
 

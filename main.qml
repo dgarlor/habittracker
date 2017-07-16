@@ -8,12 +8,11 @@ ApplicationWindow {
     height: 480
     title: qsTr("Habit Tracker")
 
-    SwipeView {
+    StackView {
         id: swipeView
         anchors.fill: parent
-        currentIndex: tabBar.currentIndex
 
-        HabitsPage {
+        initialItem: HabitsPage {
             id: listPage
         }
 
@@ -22,7 +21,7 @@ ApplicationWindow {
 
     footer: TabBar {
         id: tabBar
-        currentIndex: swipeView.currentIndex
+        //currentIndex: swipeView.currentIndex
         TabButton {
             text: qsTr("Tracker")
         }

@@ -95,6 +95,6 @@ void DatabaseConnection::updatePosition(const int task_id, const int position){
         return;
     }
 
-    qInfo()<<" Updated Position: "<<q.last();
+    qInfo()<<" Updated Position";
     emit updatedPosition(position);
 }
