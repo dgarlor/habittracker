@@ -13,31 +13,10 @@ ApplicationWindow {
         anchors.fill: parent
         currentIndex: tabBar.currentIndex
 
-        Page {
-            ListView{
-                anchors.fill: parent
-                id: habitsView
-                model: habitsModel
-                delegate: TaskButton{
-                    id: delegate
-                    habit: position
-                    task_id : id
-                    text:name
-                    }
-
-                header: Label{
-                    anchors.centerIn: parent
-                    text: "Current Tasks"
-                    font.pixelSize: 22
-                    font.italic: true
-                    color: "steelblue"
-                }
-
-            }
+        HabitsPage {
+            id: listPage
         }
 
-        Page1 {
-        }
 
     }
 

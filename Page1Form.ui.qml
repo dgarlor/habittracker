@@ -3,17 +3,22 @@ import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
 
 Item {
-    property alias taskTitle: taskTitle
+    id: item1
     property alias rowLayout: rowLayout
     property alias buttonValidate: buttonValidate
+    property alias taskName: taskName
+    visible: true
 
     ColumnLayout {
         id: columnLayout
-        anchors.rightMargin: 0
-        anchors.bottomMargin: 0
-        anchors.leftMargin: 0
-        anchors.topMargin: 0
-        anchors.fill: parent
+        spacing: 10
+        anchors.right: parent.right
+        anchors.left: parent.left
+        anchors.top: parent.top
+        transformOrigin: Item.Top
+        anchors.rightMargin: 5
+        anchors.leftMargin: 4
+        anchors.topMargin: 5
 
         RowLayout {
             Layout.alignment: Qt.AlignLeft | Qt.AlignTop
@@ -31,8 +36,7 @@ Item {
             }
 
             TextField {
-                id: taskTitle
-                text: ""
+                id: taskName
                 Layout.fillWidth: true
                 placeholderText: qsTr("Set your task")
             }
@@ -49,24 +53,29 @@ Item {
 
             ListModel {
                 id: modelDuration
-                      ListElement { key: "Day"; value: 1 }
-                      ListElement { key: "Week"; value: 7 }
-                      ListElement { key: "Month"; value: 30 }
+                ListElement {
+                    key: "Day"
+                    value: 1
+                }
+                ListElement {
+                    key: "Week"
+                    value: 7
+                }
+                ListElement {
+                    key: "Month"
+                    value: 30
+                }
             }
 
             SpinBox {
                 id: spinTaskTimes
             }
 
-
-
             Text {
                 id: text1
                 text: qsTr("times a ")
                 font.pixelSize: 12
             }
-
-
 
             ComboBox {
                 id: comboTaskDuration
@@ -75,12 +84,30 @@ Item {
                 model: modelDuration
             }
         }
+    }
 
+    ColumnLayout {
+        y: 430
+        anchors.right: parent.right
+        anchors.rightMargin: 4
+        anchors.left: parent.left
+        anchors.leftMargin: 4
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 0
+
+        Text {
+            id: textValidate
+            text: qsTr("Please, set the Task parameters before validation")
+            visible: true
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
+            font.pixelSize: 12
+        }
         Button {
             id: buttonValidate
             text: qsTr("Validate")
+            Layout.preferredHeight: 50
             autoRepeat: false
-            Layout.alignment: Qt.AlignLeft | Qt.AlignBottom
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
             Layout.fillHeight: false
             Layout.fillWidth: true
         }

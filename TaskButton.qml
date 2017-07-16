@@ -5,6 +5,8 @@ Item {
     property int habit: 1
     property int task_id: -1
     property alias text: button.text
+    property var editForm
+
     width: parent.width
     height: 100
     Button {
@@ -25,7 +27,12 @@ Item {
         anchors.top: parent.top
         anchors.bottom: stats.top
         anchors.right: parent.right
-        onClicked: print(parent.text+": Modify task: "+ parent.habit+ ", id" +parent.task_id)
+        onClicked: {
+            print(parent.text+": Modify task: "+ parent.habit+ ", id" +parent.task_id)
+//            editForm.position = parent.habit
+//            editForm.state ="focused"
+            root.StackView.view.push("qrc:Page1.qml",{position:parent.habit})
+        }
     }
 
     Button {
