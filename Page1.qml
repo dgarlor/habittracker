@@ -4,6 +4,9 @@ import QtQuick.Layouts 1.0
 Page1Form {
     property string backPage:""
     property int position: -1
+    buttonCancel.onClicked: {
+        pop()
+    }
 
     buttonValidate.onClicked: {
 

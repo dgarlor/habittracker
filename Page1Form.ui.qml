@@ -7,6 +7,7 @@ Item {
     property alias rowLayout: rowLayout
     property alias buttonValidate: buttonValidate
     property alias taskName: taskName
+    property alias buttonCancel: buttonCancel
     visible: true
 
     ColumnLayout {
@@ -87,13 +88,14 @@ Item {
     }
 
     ColumnLayout {
-        y: 430
+        y: 410
         anchors.right: parent.right
         anchors.rightMargin: 4
         anchors.left: parent.left
         anchors.leftMargin: 4
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 0
+
 
         Text {
             id: textValidate
@@ -102,14 +104,29 @@ Item {
             Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
             font.pixelSize: 12
         }
-        Button {
-            id: buttonValidate
-            text: qsTr("Validate")
-            Layout.preferredHeight: 50
-            autoRepeat: false
-            Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
-            Layout.fillHeight: false
-            Layout.fillWidth: true
+        RowLayout {
+            id: rowLayout1
+            width: 100
+            height: 100
+
+
+            Button {
+                id: buttonValidate
+                width: 100
+                text: qsTr("Validate")
+                Layout.preferredHeight: 50
+                autoRepeat: false
+                Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
+                Layout.fillHeight: false
+                Layout.fillWidth: true
+            }
+            Button {
+                id: buttonCancel
+                x: 500
+                width: 100
+                text: qsTr("Cancel")
+                Layout.fillWidth: true
+            }
         }
     }
 }

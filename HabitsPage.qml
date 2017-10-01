@@ -7,8 +7,6 @@ Page {
     ListView{
         anchors.fill: parent
         id: habitsView
-        onModelChanged: print ("Model changed")
-
         model: habitsModel
         delegate: TaskButton{
             id: delegate
@@ -18,7 +16,7 @@ Page {
             parentPage: listPage
         }
         
-        header: Label{
+        header: Text{
             anchors.centerIn: parent
             text: "Current Tasks"
             font.pixelSize: 22

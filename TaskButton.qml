@@ -28,6 +28,7 @@ Item {
         anchors.bottom: stats.top
         anchors.right: parent.right
         onClicked: {
+            // TODO read the data for the edition
             print(parent.text+": Modify task: "+ parent.habit+ ", id" +parent.task_id)
             parentPage.StackView.view.push(
                         "qrc:/Page1.qml",
@@ -42,7 +43,10 @@ Item {
         anchors.top: modify.bottom
         anchors.bottom: parent.bottom
         anchors.right: parent.right
-        onClicked: print(parent.text+": Stats: "+ parent.habit+ ", id" +parent.task_id)
+        onClicked: {
+            // TODO get stats from teh model and show them
+            print(parent.text+": Stats: "+ parent.habit+ ", id" +parent.task_id)
+        }
     }
 
 }
